@@ -1,0 +1,18 @@
+NSX-L2-1#show run interfaces vlan 100-104
+interface Vlan100
+   mtu 9214
+   ip address 10.35.100.2/24
+   vrrp 100 ip 10.35.100.1
+interface Vlan101
+   ip address 10.35.101.2/24
+   vrrp 101 ip 10.35.101.1
+interface Vlan102
+   mtu 9214
+   ip address 10.35.102.2/24
+   vrrp 102 ip 10.35.102.1
+interface Vlan103
+   mtu 9214
+interface Vlan104
+   mtu 9214
+   ip address 10.35.104.2/24
+   vrrp 104 ip 10.35.104.1

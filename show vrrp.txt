@@ -1,0 +1,68 @@
+NSX-L2-1#show vrrp
+Vlan100 - Group 100
+  VRF is default
+  VRRP Version 2
+  State is Master
+  Virtual IPv4 address is 10.35.100.1
+  Virtual MAC address is 0000.5e00.0164
+  Mac Address Advertisement interval is 30s
+  VRRP Advertisement interval is 1s
+  Preemption is enabled
+  Preemption delay is 0s
+  Preemption reload delay is 0s
+  Priority is 100
+  Master Router is 10.35.100.2 (local), priority is 100
+  Master Advertisement interval is 1s
+  Skew time is 0.600s
+  Master Down interval is 3.600s
+
+Vlan101 - Group 101
+  VRF is default
+  VRRP Version 2
+  State is Master
+  Virtual IPv4 address is 10.35.101.1
+  Virtual MAC address is 0000.5e00.0165
+  Mac Address Advertisement interval is 30s
+  VRRP Advertisement interval is 1s
+  Preemption is enabled
+  Preemption delay is 0s
+  Preemption reload delay is 0s
+  Priority is 100
+  Master Router is 10.35.101.2 (local), priority is 100
+  Master Advertisement interval is 1s
+  Skew time is 0.600s
+  Master Down interval is 3.600s
+
+Vlan102 - Group 102
+  VRF is default
+  VRRP Version 2
+  State is Master
+  Virtual IPv4 address is 10.35.102.1
+  Virtual MAC address is 0000.5e00.0166
+  Mac Address Advertisement interval is 30s
+  VRRP Advertisement interval is 1s
+  Preemption is enabled
+  Preemption delay is 0s
+  Preemption reload delay is 0s
+  Priority is 100
+  Master Router is 10.35.102.2 (local), priority is 100
+  Master Advertisement interval is 1s
+  Skew time is 0.600s
+  Master Down interval is 3.600s
+
+Vlan104 - Group 104
+  VRF is default
+  VRRP Version 2
+  State is Master
+  Virtual IPv4 address is 10.35.104.1
+  Virtual MAC address is 0000.5e00.0168
+  Mac Address Advertisement interval is 30s
+  VRRP Advertisement interval is 1s
+  Preemption is enabled
+  Preemption delay is 0s
+  Preemption reload delay is 0s
+  Priority is 100
+  Master Router is 10.35.104.2 (local), priority is 100
+  Master Advertisement interval is 1s
+  Skew time is 0.600s
+  Master Down interval is 3.600s

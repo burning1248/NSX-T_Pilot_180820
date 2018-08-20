@@ -1,0 +1,120 @@
+NSX-L2-1>NSX-L2-1>show vlan active-configuration
+VLAN  Name                             Status    Ports
+----- -------------------------------- --------- -------------------------------
+1     default                          active    Et1, Et2, Et3, Et4, Et5, Et6
+                                                 Et7, Et8, Et17, Et18, Et19
+                                                 Et20, Et41, Po3
+100   TEP                              active    Cpu, Et1, Et2, Et3, Et4, Et5
+                                                 Et6, Et7, Et8, Et17, Et18, Et19
+                                                 Et20, Et41, Po3
+101   VMOTION                          active    Cpu, Et1, Et2, Et3, Et4, Et5
+                                                 Et6, Et7, Et8, Et17, Et18, Et19
+                                                 Et20, Et41, Po3
+102   UPLINK                           active    Cpu, Et1, Et2, Et3, Et4, Et5
+                                                 Et6, Et7, Et8, Et17, Et18, Et19
+                                                 Et20, Et41, Po3
+104   TEST                             active    Cpu, Et1, Et2, Et3, Et4, Et5
+                                                 Et6, Et7, Et8, Et17, Et18, Et19
+                                                 Et20, Et41, Po3
+200   VLAN0200                         active    Cpu, Et1, Et2, Et3, Et4, Et5
+                                                 Et6, Et7, Et8, Et17, Et18, Et19
+                                                 Et20, Et41, Po3
+500   CSP_Test                         active    Et1, Et2, Et3, Et4, Et5, Et6
+                                                 Et7, Et8, Et17, Et18, Et19
+                                                 Et20, Et41, Po3
+4094  VLAN4094                         active    Cpu
+
+
+
+NSX-L2-1>show mlag
+MLAG Configuration:
+domain-id           :               MLAG1
+local-interface     :            Vlan4094
+peer-address        :            10.0.0.2
+peer-link           :       Port-Channel3
+peer-config         :
+
+MLAG Status:
+state               :            Inactive
+negotiation status  :          Connecting
+peer-link status    :                  Up
+local-int status    :      Lowerlayerdown
+system-id           :   00:00:00:00:00:00
+
+MLAG Ports:
+Disabled            :                   0
+Configured          :                   0
+Inactive            :                   0
+Active-partial      :                   0
+Active-full         :                   0
+
+
+NSX-L2-1>show bfd neighbors
+VRF name: default
+-----------------
+DstAddr                  MyDisc         YourDisc        Interface         Type               LastUp             LastDown            LastDiag    State
+----------------- ---------------- ---------------- ---------------- ------------ -------------------- -------------------- ------------------- -----
+10.35.102.4           767918900       1051732391       Vlan102(9)       normal       08/11/18 02:18       08/11/18 02:18       No Diagnostic       Up
+10.35.102.5          3042665134        827862030       Vlan102(9)       normal       08/11/18 02:19       08/11/18 02:19       No Diagnostic       Up
+
+
+
+NSX-L2-1>show bgp neighbors
+% Not supported
+NSX-L2-1>show bgp peer-group
+BGP peer-group is nsx, remote AS 65002, peer-group external
+  BGP version 4
+  Static peer-group members:
+    VRF default:
+      10.35.102.4, state: Established
+        Negotiated MP Capabilities:
+            IPv4 Unicast: Yes
+            IPv6 Unicast: No
+      10.35.102.5, state: Established
+        Negotiated MP Capabilities:
+            IPv4 Unicast: Yes
+            IPv6 Unicast: No
+BGP peer-group is test, remote AS 65001, peer-group internal
+  BGP version 4
+  Static peer-group members:
+    VRF default:
+      10.41.1.22, state: Established
+        Negotiated MP Capabilities:
+            IPv4 Unicast: Yes
+            IPv6 Unicast: No
+      10.41.1.24, state: Established
+        Negotiated MP Capabilities:
+            IPv4 Unicast: Yes
+            IPv6 Unicast: No
+
+
+
+NSX-L2-1>show bgp  instance
+BGP instance information for VRF default
+BGP Local AS: 65001, Router ID: 10.35.102.2
+Total peers:              4
+  Static peers:           4
+  Dynamic peers:          0
+  Disabled peers:         0
+  Established peers:      4
+Four Octet ASN mode enabled
+Graceful restart helper mode enabled
+Graceful restart mode disabled
+End of rib timer timeout: 00:05:00
+Attributes of the reflected routes are not preserved
+Maximum paths: 1 Maximum ECMP: 32
+UCMP mode: disabled
+Peer mac resolution timeout: 00:00:00
+BGP Convergence timer is inactive
+BGP Convergence based update synchronization is disabled
+BGP Convergence slow-peer timeout: 00:01:30
+BGP Listen Port Status: listening on port 179
+BGP Convergence information:
+    BGP has converged:   yes,   Time taken to converge: 00:00:30
+    Outstanding EORs:    0,     Outstanding Keepalives: 0
+    Convergence timeout: 00:05:00
+Address-family IPv4 Unicast:
+  Additional-paths installation is disabled
+  Extended next-hop capability is disabled
+Address-family IPv6 Unicast:
+  Additional-paths installation is disabled

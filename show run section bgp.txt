@@ -1,0 +1,16 @@
+NSX-L2-1#show run section bgp
+router bgp 65001
+   router-id 10.35.102.2
+   neighbor nsx peer-group
+   neighbor nsx remote-as 65002
+   neighbor nsx next-hop-self
+   neighbor nsx fall-over bfd
+   neighbor nsx maximum-routes 12000
+   neighbor test peer-group
+   neighbor test remote-as 65001
+   neighbor test next-hop-self
+   neighbor test maximum-routes 12000
+   neighbor 10.35.102.4 peer-group nsx
+   neighbor 10.35.102.5 peer-group nsx
+   neighbor 10.41.1.22 peer-group test
+   neighbor 10.41.1.24 peer-group test

@@ -1,0 +1,272 @@
+NSX-L2-1#show run
+! Command: show running-config
+! device: NSX-L2-1 (DCS-7050S-52, EOS-4.18.8M-INT)
+!
+! boot system flash:/EOS-4.18.8M.swi
+!
+transceiver qsfp default-mode 4x10G
+!
+hostname NSX-L2-1
+!
+spanning-tree mode mstp
+no spanning-tree vlan 4094
+!
+enable secret 5 $1$s4qZFWVN$UR4og/m0E85/GlB2uCj1C1
+no aaa root
+!
+username admin privilege 15 role network-admin secret 5 $1$FLe3ilpk$SXvW6iXvj92rkK4LSmxvm1
+!
+vlan 100
+   name TEP
+!
+vlan 101
+   name VMOTION
+!
+vlan 102
+   name UPLINK
+!
+vlan 104
+   name TEST
+!
+vlan 200
+!
+vlan 500
+   name CSP_Test
+!
+vlan 4094
+   trunk group mlagpeer
+!
+bfd interval 1000 min_rx 1000 multiplier 3 default
+!
+interface Port-Channel3
+   switchport mode trunk
+!
+interface Ethernet1
+   switchport mode trunk
+   spanning-tree portfast
+!
+interface Ethernet2
+   switchport mode trunk
+   spanning-tree portfast
+!
+interface Ethernet3
+   switchport mode trunk
+   spanning-tree portfast
+!
+interface Ethernet4
+   switchport mode trunk
+   spanning-tree portfast
+!
+interface Ethernet5
+   switchport mode trunk
+   spanning-tree portfast
+!
+interface Ethernet6
+   switchport mode trunk
+   spanning-tree portfast
+!
+interface Ethernet7
+   switchport mode trunk
+   spanning-tree portfast
+!
+interface Ethernet8
+   switchport mode trunk
+   spanning-tree portfast
+!
+interface Ethernet9
+   spanning-tree portfast
+!
+interface Ethernet10
+   spanning-tree portfast
+!
+interface Ethernet11
+   spanning-tree portfast
+!
+interface Ethernet12
+   spanning-tree portfast
+!
+interface Ethernet13
+   spanning-tree portfast
+!
+interface Ethernet14
+   spanning-tree portfast
+!
+interface Ethernet15
+   spanning-tree portfast
+!
+interface Ethernet16
+   spanning-tree portfast
+!
+interface Ethernet17
+   switchport mode trunk
+   spanning-tree portfast
+!
+interface Ethernet18
+   switchport mode trunk
+   spanning-tree portfast
+!
+interface Ethernet19
+   switchport mode trunk
+   spanning-tree portfast
+!
+interface Ethernet20
+   switchport mode trunk
+   spanning-tree portfast
+!
+interface Ethernet21
+   spanning-tree portfast
+!
+interface Ethernet22
+   spanning-tree portfast
+!
+interface Ethernet23
+   spanning-tree portfast
+!
+interface Ethernet24
+   spanning-tree portfast
+!
+interface Ethernet25
+   spanning-tree portfast
+!
+interface Ethernet26
+   spanning-tree portfast
+!
+interface Ethernet27
+   spanning-tree portfast
+!
+interface Ethernet28
+   spanning-tree portfast
+!
+interface Ethernet29
+   spanning-tree portfast
+!
+interface Ethernet30
+   spanning-tree portfast
+!
+interface Ethernet31
+   spanning-tree portfast
+!
+interface Ethernet32
+   spanning-tree portfast
+!
+interface Ethernet33
+   spanning-tree portfast
+!
+interface Ethernet34
+   spanning-tree portfast
+!
+interface Ethernet35
+   spanning-tree portfast
+!
+interface Ethernet36
+   spanning-tree portfast
+!
+interface Ethernet37
+   spanning-tree portfast
+!
+interface Ethernet38
+   spanning-tree portfast
+!
+interface Ethernet39
+   spanning-tree portfast
+!
+interface Ethernet40
+   spanning-tree portfast
+!
+interface Ethernet41
+   switchport mode trunk
+!
+interface Ethernet42
+   spanning-tree portfast
+!
+interface Ethernet43
+   no switchport
+   spanning-tree portfast
+!
+interface Ethernet44
+   spanning-tree portfast
+!
+interface Ethernet45
+   spanning-tree portfast
+!
+interface Ethernet46
+   spanning-tree portfast
+!
+interface Ethernet47
+   spanning-tree portfast
+!
+interface Ethernet48
+   spanning-tree portfast
+!
+interface Ethernet49
+   channel-group 3 mode active
+!
+interface Ethernet50
+   channel-group 3 mode active
+!
+interface Ethernet51
+   channel-group 3 mode active
+!
+interface Ethernet52
+   channel-group 3 mode active
+!
+interface Management1
+   ip address 192.168.1.21/16
+!
+interface Vlan100
+   mtu 9214
+   ip address 10.35.100.2/24
+   vrrp 100 ip 10.35.100.1
+!
+interface Vlan101
+   ip address 10.35.101.2/24
+   vrrp 101 ip 10.35.101.1
+!
+interface Vlan102
+   mtu 9214
+   ip address 10.35.102.2/24
+   vrrp 102 ip 10.35.102.1
+!
+interface Vlan103
+   mtu 9214
+!
+interface Vlan104
+   mtu 9214
+   ip address 10.35.104.2/24
+   vrrp 104 ip 10.35.104.1
+!
+interface Vlan200
+   mtu 9214
+   ip address 10.41.1.21/24
+!
+interface Vlan4094
+   ip address 10.0.0.1/30
+!
+ip routing
+!
+mlag configuration
+   domain-id MLAG1
+   local-interface Vlan4094
+   peer-address 10.0.0.2
+   peer-link Port-Channel3
+!
+router bgp 65001
+   router-id 10.35.102.2
+   neighbor nsx peer-group
+   neighbor nsx remote-as 65002
+   neighbor nsx next-hop-self
+   neighbor nsx fall-over bfd
+   neighbor nsx maximum-routes 12000
+   neighbor test peer-group
+   neighbor test remote-as 65001
+   neighbor test next-hop-self
+   neighbor test maximum-routes 12000
+   neighbor 10.35.102.4 peer-group nsx
+   neighbor 10.35.102.5 peer-group nsx
+   neighbor 10.41.1.22 peer-group test
+   neighbor 10.41.1.24 peer-group test
+!
+management ssh
+   idle-timeout 30
+!
+end
